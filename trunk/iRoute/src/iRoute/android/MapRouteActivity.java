@@ -75,7 +75,7 @@ public class MapRouteActivity extends MapActivity {
 
 		mapView = (MapView) findViewById(R.id.themap);
 		mapView.setBuiltInZoomControls(true);
-
+		
 		new Thread() {
 			@Override
 			public void run() {
@@ -87,47 +87,7 @@ public class MapRouteActivity extends MapActivity {
 					double toLat = Double.parseDouble(cordinates[i + 1][0]);
 					double toLon = Double.parseDouble(cordinates[i + 1][1]);
 
-					if (i != cordinates.length - 2) {
-						GeoPoint city = new GeoPoint((int) (fromLat * 1E6),
-								(int) (fromLon * 1E6));
-						Drawable marker = getResources().getDrawable(
-								R.drawable.mapmarker2);
-						int markerWidth = marker.getIntrinsicWidth();
-						int markerHeight = marker.getIntrinsicHeight();
-						marker.setBounds(0, markerHeight, markerWidth, 0);
-
-						MyOverlay myItemizedOverlay = new MyOverlay(marker);
-						mapView.getOverlays().add(myItemizedOverlay);
-						myItemizedOverlay.addItem(city, "City", "City2");
-
-						marker = getResources().getDrawable(
-								R.drawable.mapmarker2);
-						marker.setBounds(0, markerHeight, markerWidth, 0);
-
-					} else {
-						GeoPoint city = new GeoPoint((int) (fromLat * 1E6),
-								(int) (fromLon * 1E6));
-						GeoPoint place = new GeoPoint((int) (toLat * 1E6),
-								(int) (toLon * 1E6));
-
-						Drawable marker = getResources().getDrawable(
-								R.drawable.mapmarker2);
-						int markerWidth = marker.getIntrinsicWidth();
-						int markerHeight = marker.getIntrinsicHeight();
-						marker.setBounds(0, markerHeight, markerWidth, 0);
-
-						MyOverlay myItemizedOverlay = new MyOverlay(marker);
-						mapView.getOverlays().add(myItemizedOverlay);
-						myItemizedOverlay.addItem(city, "City", "City2");
-						myItemizedOverlay = new MyOverlay(marker);
-						mapView.getOverlays().add(myItemizedOverlay);
-						myItemizedOverlay.addItem(place, "City", "City2");
-
-						marker = getResources().getDrawable(
-								R.drawable.mapmarker2);
-						marker.setBounds(0, markerHeight, markerWidth, 0);
-
-					}
+			
 					// GeoPoint place = new GeoPoint((int) (toLat * 1E6),
 					// (int) (toLon * 1E6));
 
@@ -143,7 +103,58 @@ public class MapRouteActivity extends MapActivity {
 
 			}
 		}.start();
+		
+		for (int i = 0; i < cordinates.length - 1; i++) {
+			// double fromLat = 6.797325, fromLon = 79.888533, toLat =
+			// 6.850823, toLon = 79.865992;
+			double fromLat = Double.parseDouble(cordinates[i][0]);
+			double fromLon = Double.parseDouble(cordinates[i][1]);
+			double toLat = Double.parseDouble(cordinates[i + 1][0]);
+			double toLon = Double.parseDouble(cordinates[i + 1][1]);
 
+			if (i != cordinates.length - 2) {
+				GeoPoint city = new GeoPoint((int) (fromLat * 1E6),
+						(int) (fromLon * 1E6));
+				Drawable marker = getResources().getDrawable(
+						R.drawable.mapmarker2);
+				int markerWidth = marker.getIntrinsicWidth();
+				int markerHeight = marker.getIntrinsicHeight();
+				marker.setBounds(0, markerHeight, markerWidth, 0);
+
+				MyOverlay myItemizedOverlay = new MyOverlay(marker);
+				mapView.getOverlays().add(myItemizedOverlay);
+				myItemizedOverlay.addItem(city, "City", "City2");
+
+				marker = getResources().getDrawable(
+						R.drawable.mapmarker2);
+				marker.setBounds(0, markerHeight, markerWidth, 0);
+
+			} else {
+				GeoPoint city = new GeoPoint((int) (fromLat * 1E6),
+						(int) (fromLon * 1E6));
+				GeoPoint place = new GeoPoint((int) (toLat * 1E6),
+						(int) (toLon * 1E6));
+
+				Drawable marker = getResources().getDrawable(
+						R.drawable.mapmarker2);
+				int markerWidth = marker.getIntrinsicWidth();
+				int markerHeight = marker.getIntrinsicHeight();
+				marker.setBounds(0, markerHeight, markerWidth, 0);
+
+				MyOverlay myItemizedOverlay = new MyOverlay(marker);
+				mapView.getOverlays().add(myItemizedOverlay);
+				myItemizedOverlay.addItem(city, "City", "City2");
+				myItemizedOverlay = new MyOverlay(marker);
+				mapView.getOverlays().add(myItemizedOverlay);
+				myItemizedOverlay.addItem(place, "City", "City2");
+
+				marker = getResources().getDrawable(
+						R.drawable.mapmarker2);
+				marker.setBounds(0, markerHeight, markerWidth, 0);
+
+			}
+
+		}	
 		MapController control = mapView.getController();
 		LocationManager manager = (LocationManager) this
 				.getSystemService(Context.LOCATION_SERVICE);
@@ -171,9 +182,7 @@ public class MapRouteActivity extends MapActivity {
 			public void onLocationChanged(Location arg0) {
 				//lat = arg0.getLatitude();
 				//lng = arg0.getLongitude();
-				lat = 6.788035;
-				lng = 79.885111;
-
+			
 			}
 		};
 		//manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,listner);
