@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyTable extends Activity {
 	/** Called when the activity is first created. */
@@ -46,9 +48,18 @@ public class MyTable extends Activity {
 		}
 		//buses[0] = "101";
 		//buses[1] = "255";
+		if(al.size()>0){
 		fillCountryTable();
+		}
+		else
+		{
+			Toast toast = Toast.makeText(getApplicationContext(), "Invalid Input",Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+			
+		}
 		
-		
+		//fillCountryTable();
 		Button b = (Button) findViewById(R.id.getMap);
 		b.setOnClickListener(new OnClickListener() {
 			
@@ -61,6 +72,16 @@ public class MyTable extends Activity {
 				
 			}
 		});
+		
+		Button b2 = (Button) findViewById(R.id.button2);
+		b2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				finish();
+			}
+		});
+		
 	}
 
 	void fillCountryTable() {
