@@ -15,10 +15,19 @@
         android:icon="@drawable/ic_launcher"
          android:debuggable="true">
           <uses-library android:name="com.google.android.maps"/>
-        <activity
-            android:name="iRoute.android.IRouteActivity"
-           
-            >
+          
+       <activity
+            android:name="iRoute.android.IRouteActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+				
+                <category android:name="android.intent.category.DEFAULT" />
+                
+            </intent-filter>
+        </activity>
+        
+       <activity
+            android:name="iRoute.android.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +35,7 @@
             </intent-filter>
         </activity>
         
-        
+       <activity android:name="iRoute.android.IRouteActivity" />
        <activity android:name="iRoute.android.RoutesView" />
        <activity android:name="iRoute.android.MyTable" />
        <activity android:name="iRoute.android.MapRouteActivity" />

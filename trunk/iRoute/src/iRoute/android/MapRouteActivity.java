@@ -20,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import test3.android.project.R;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -27,6 +28,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -201,6 +205,16 @@ public class MapRouteActivity extends MapActivity {
 		mapView.getOverlays().add(mynewOverlay);
 		mynewOverlay.addItem(curerentLocation, "Currrent Location",
 				"Current Position");
+		
+		Button b3 = (Button) findViewById(R.id.button1);
+		b3.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				finish();
+				
+			}
+		});
 	}
 
 	Handler mHandler = new Handler() {

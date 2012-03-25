@@ -76,6 +76,10 @@ public class IRouteActivity extends Activity {
 				R.layout.list_item, arylst);
 		text1.setAdapter(adapter);
 		text2.setAdapter(adapter);
+		//text1.getValidator();
+		//text1.setValidator(new Validator());
+      //  text1.setOnFocusChangeListener(new FocusListener());
+		
 		//text1.setText(busstops[0]);
 
 		Button b = (Button) findViewById(R.id.button1);
@@ -102,6 +106,17 @@ public class IRouteActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+		});
+		
+		
+		Button b1 = (Button) findViewById(R.id.button2);
+		b1.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				finish();
+				
 			}
 		});
 	}
